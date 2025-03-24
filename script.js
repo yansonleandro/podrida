@@ -676,12 +676,36 @@ function endGame() {
     const finalScores = document.getElementById('final-scores');
     finalScores.innerHTML = document.getElementById('score-table-section').innerHTML;
     
-    // Determinar el ganador
-    const maxScore = Math.max(...totalScores);
-    const winnerIndex = totalScores.indexOf(maxScore);
-    const winnerName = players[winnerIndex];
-    
+    // Llenar tabla de clasificación final
+    const rankingTableBody = document.getElementById('ranking-table-body');
+    rankingTableBody.innerHTML = ''; // Limpiar tabla
+
+    // Crear un array de jugadores con sus puntajes
+    const playerScores = players.map((player, index) => ({
+        name: player,
+        score: totalScores[index]
+    }));
+
+    // Ordenar jugadores por puntaje descendente
+    playerScores.sort((a, b) => b.score - a.score);
+
+    // Agregar filas a la tabla
+    playerScores.forEach(playerScore => {
+        const row = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        const scoreCell = document.createElement('td');
+
+        nameCell.textContent = playerScore.name;
+        scoreCell.textContent = playerScore.score;
+
+        row.appendChild(nameCell);
+        row.appendChild(scoreCell);
+        rankingTableBody.appendChild(row);
+    });
+
     // Mostrar el ganador
+    const maxScore = playerScores[0].score;
+    const winnerName = playerScores[0].name;
     const gameEndHeader = document.querySelector('#game-end h2');
     gameEndHeader.textContent = `¡Juego Terminado! Ganador: ${winnerName}`;
 }

@@ -156,10 +156,27 @@
             <!-- Fin del Juego -->
             <section id="game-end" class="tab-content hidden">
                 <h2>¡Juego Terminado!</h2>
+
+                                <h3>Clasificación Final</h3>
+                <div id="final-ranking" class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Jugador</th>
+                                <th>Puntaje</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking-table-body">
+                            <!-- Se llenará dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
                 
                 <div id="final-scores" class="table-container">
                     <!-- Se copiará la tabla de puntuaciones aquí -->
                 </div>
+                
+
                 
                 <button id="new-game" class="primary-button">Nuevo Juego</button>
             </section>
